@@ -7,6 +7,7 @@ import urllib.error
 import json
 import tweepy
 import gunicorn
+import uvicorn
 
 app = Flask(__name__)
 
@@ -18,7 +19,7 @@ app.config.from_pyfile('config.cfg', silent=True)
 
 oauth2_user_handler = tweepy.OAuth2UserHandler(
     client_id = 'UzRaazJJcDJ0U1lsc3c1b29vbXc6MTpjaQ',
-    redirect_uri = 'https://012b-8-25-197-34.ngrok-free.app/callback',
+    redirect_uri = 'https://5b07-8-25-197-34.ngrok-free.app/callback',
     scope = ["tweet.read", "users.read", "list.read"]
     # Client Secret is only necessary if using a confidential client
     # client_secret = os.getenv('CLIENT_SECRET'))
@@ -36,7 +37,6 @@ def hello():
 
 @app.route('/start')
 def start():
-
     return render_template('start.html', authorize_url=authorize_url)
 
 
@@ -44,8 +44,10 @@ def start():
 def callback():
     # Accept the callback params, get the token and call the API to
     # display the logged-in user's name and handle
-    received_state = request.args.get('state')
-    code = request.args.get('code')
+    received_state = request.args.get('user_name')
+    code = request.args.get('user_name')
+    response = request.args.get('user_name')
+    
     access_denied = request.args.get('error')
 
     # if the OAuth request was denied, delete our local token
@@ -56,8 +58,7 @@ def callback():
     if received_state != state:
       return render_template('error.html', error_message="There was a problem authenticating this user")
     
-    redirect_uri = os.getenv('REDIRECT_URI')
-    response_url_from_app = '{}?state={}&code={}'.format(redirect_uri, state, code)
+    redirect_uri = 'https://5b07-8-25-197-34.ngrok-free.app/callback'
     access_token = oauth2_user_handler.fetch_token(response_url_from_app)['access_token']
     print(access_token)
     client = tweepy.Client(access_token)
@@ -69,6 +70,8 @@ def callback():
     followers_count = user.data['public_metrics']['followers_count']
     friends_count = user.data['public_metrics']['following_count']
     tweet_count = user.data['public_metrics']['tweet_count']
+    print("here",name, user_name, followers_count, friends_count, tweet_count)
+    response_url_from_app = '{}?state={}&code={}&user_name={}'.format(redirect_uri, state, code, response)
     
     return render_template('callback-success.html', name=name, user_name=user_name,
                            friends_count=friends_count, tweet_count=tweet_count, followers_count=followers_count)

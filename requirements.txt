@@ -1,4 +1,4 @@
-gunicorn
+gunicorn==22.0.0
 itsdangerous
 oauth2
 Flask
