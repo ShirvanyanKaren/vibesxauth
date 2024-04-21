@@ -6,10 +6,13 @@ from urllib import parse
 import urllib.error
 import json
 import tweepy
+import gunicorn
 
 app = Flask(__name__)
 
 app.debug = False
+# how to install gunicorn version 22.0.0
+# pip install gunicorn==22.0.0
 
 app.config.from_pyfile('config.cfg', silent=True)
 
