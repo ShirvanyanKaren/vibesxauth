@@ -1,1 +1,1 @@
-web: gunicorn auth:app
+web: gunicorn twauth-web:app
