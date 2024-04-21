@@ -1,1 +1,1 @@
-web: run:deez
+web: gunicorn auth:app
