@@ -1,10 +1,14 @@
-# twauth-web
+# oauth2-flask-sample
 
-A simple Python + Flask web app that demonstrates the flow of obtaining a [Twitter user OAuth access token](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth).
+
+
+A simple Python + Flask web app that demonstrates the flow of obtaining an [access token using OAuth 2.0](https://developer.x.com/en/docs/basics/authentication/overview/oauth) for an X user.
+
+You can try a deployed version of the app [running on Glitch](https://oauth2-flask-sample.glitch.me/).
 
 ## Setup
 
-1. Obtain consumer key and secret from the Twitter Developer portal. The app should be configured to enable Sign in with Twitter. See `twauth-web.py` for more details, but you can either:
+1. Obtain consumer key and secret from the X Developer portal. The app should be configured to enable Sign in with X. See `twauth-web.py` for more details, but you can either:
    1. add these values to a `config.cfg` file (local deployment); or
    2. set environment variables `TWAUTH_APP_CONSUMER_KEY` and `TWAUTH_APP_CONSUMER_SECRET` (cloud deployment)
 2. Setup a [pipenv](https://pipenv.readthedocs.io/en/latest/) environment, and install dependencies:
@@ -22,7 +26,7 @@ Finally, revisit the dev portal, and add your app's callback URL (`https://your-
 
 ## Reference
 
-[Twitter Developer Portal](https://developer.twitter.com/)  
+[X Developer Portal](https://developer.x.com/)  
 [Flask](https://flask.pocoo.org/)  
 [python-oauth2](https://github.com/simplegeo/python-oauth2)  
 [Bootstrap](https://getbootstrap.com/)  
@@ -30,5 +34,5 @@ Finally, revisit the dev portal, and add your app's callback URL (`https://your-
 ### Credits
 
 Original version by Jacob Petrie  
-https://twitter.com/jaakkosf  
+https://x.com/jaakkosf  
 https://github.com/jaakko-sf/twauth-web  

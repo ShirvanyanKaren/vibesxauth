@@ -1,0 +1,10 @@
+gunicorn
+itsdangerous
+oauth2
+Flask
+Jinja2
+MarkupSafe
+Werkzeug
+tweepy
+urllib3==1.26.15
+requests==2.28.1
